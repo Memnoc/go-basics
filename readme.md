@@ -12,7 +12,7 @@
 
 ## Some special notes
 
-This error:
+**This error:**
 
 ```error
 go pls was not able to find modules in your workspace
@@ -25,3 +25,6 @@ To fix it:
 1. cd into the new dir
 2. run `go mod init module.go`
 3. run `go mod tidy`
+
+**The \_ sign: [blank identifier](https://go.dev/doc/effective_go#blank)**
+You use it when you have declared but unused variables to let Go know that everything is ok. Especially useful in range loops.
