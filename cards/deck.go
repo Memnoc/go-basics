@@ -1,8 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io/fs"
+	"log"
+	"strings"
 
-// A deck type which is a slice of string
+	// A deck type which is a slice of string
+	"os"
+)
+
 type deck []string
 
 func new_deck() deck {
@@ -28,3 +35,26 @@ func (d deck) print() {
 func deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
 }
+
+func (d deck) toString() string {
+	return strings.Join([]string(d), ",")
+}
+
+func (d deck) save_to_file(filename string) error {
+	return os.WriteFile(filename, []byte(d.toString()), fs.FileMode(0666))
+}
+
+func (d deck) save_to_file_two(filename string) error {
+	err := os.WriteFile(filename, []byte(d.toString()), 0666)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return err
+}
+
+// func test() {
+// 	err := os.WriteFile("testdata/hello", []byte("Hello, Gophers!"), 0666)
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
+// }
