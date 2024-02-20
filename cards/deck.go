@@ -10,7 +10,6 @@ import (
 	"time"
 )
 
-// A deck type which is a slice of string
 type deck []string
 
 func new_deck() deck {
@@ -53,11 +52,10 @@ func (d deck) save_to_file_two(filename string) error {
 	return err
 }
 
-// saveToFileTwo is modified to accept a FileWriter interface.
 func (d deck) saveToFileTwo(fw FileWriter, filename string) error {
 	err := fw.WriteFile(filename, []byte(d.toString()), 0666)
 	if err != nil {
-		log.Fatal(err) // Consider handling the error differently to allow for testing without exiting.
+		log.Fatal(err)
 	}
 	return err
 }
