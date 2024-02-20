@@ -53,6 +53,15 @@ func (d deck) save_to_file_two(filename string) error {
 	return err
 }
 
+// saveToFileTwo is modified to accept a FileWriter interface.
+func (d deck) saveToFileTwo(fw FileWriter, filename string) error {
+	err := fw.WriteFile(filename, []byte(d.toString()), 0666)
+	if err != nil {
+		log.Fatal(err) // Consider handling the error differently to allow for testing without exiting.
+	}
+	return err
+}
+
 /*
 * NOTE: utils to read from a file, just for fun
  */
