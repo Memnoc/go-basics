@@ -28,3 +28,16 @@ To fix it:
 
 **The \_ sign: [blank identifier](https://go.dev/doc/effective_go#blank)**
 You use it when you have declared but unused variables to let Go know that everything is ok. Especially useful in range loops.
+
+**The nil value**
+`nil` in Go is used to validate errors, so far I have been encountering it on these idiomatic expressions:
+
+```go
+func (d deck) read_from_file() error {
+	content, err := os.ReadFile("../cards/my_cards")
+	if err != nil {
+		log.Fatal(err)
+	}
+```
+
+Here we are saying: if `nil` is not == 0 (because nil is effectively 0 in Golang), return an error.
