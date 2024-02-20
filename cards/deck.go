@@ -52,6 +52,9 @@ func (d deck) save_to_file_two(filename string) error {
 	return err
 }
 
+/*
+* NOTE: this is the first approach with GoMock
+ */
 func (d deck) saveToFileTwo(fw FileWriter, filename string) error {
 	err := fw.WriteFile(filename, []byte(d.toString()), 0666)
 	if err != nil {
