@@ -4,12 +4,11 @@ import (
 	"fmt"
 	"io/fs"
 	"log"
-	"strings"
-
-	// A deck type which is a slice of string
 	"os"
+	"strings"
 )
 
+// A deck type which is a slice of string
 type deck []string
 
 func new_deck() deck {
@@ -52,9 +51,27 @@ func (d deck) save_to_file_two(filename string) error {
 	return err
 }
 
-// func test() {
-// 	err := os.WriteFile("testdata/hello", []byte("Hello, Gophers!"), 0666)
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-// }
+/*
+* NOTE: utils to read from a file, just for fun
+ */
+func (d deck) read_from_file() error {
+	content, err := os.ReadFile("../cards/my_cards")
+	if err != nil {
+		log.Fatal(err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("File contents: %s", content)
+	return err
+}
+
+func new_deck_from_file(filename string) deck {
+	content, err := os.ReadFile(filename)
+	if err != nil {
+		fmt.Println("No such file or directory", err)
+		os.Exit(1)
+	}
+
+	s := strings.Split(string(content), ",")
+	return deck(s)
+}
