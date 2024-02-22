@@ -2,6 +2,7 @@ package main
 
 import (
 	"cards/mocks"
+	"os"
 	"testing"
 
 	"github.com/golang/mock/gomock"
@@ -23,6 +24,11 @@ func TestNewDeck(t *testing.T) {
 	}
 }
 
+/*
+*
+* NOTE: first approach, followig GoMock best practices (hopefully)
+*
+ */
 func TestDeckSaveToFileTwo(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
@@ -38,4 +44,23 @@ func TestDeckSaveToFileTwo(t *testing.T) {
 	if err != nil {
 		t.Errorf("Expected no error, but got %v", err)
 	}
+}
+
+/*
+*
+* NOTE: second approach following the course material
+ */
+func TestSaveToDeckAndNewDeckFromFile(t *testing.T) {
+	os.Remove("_decktesting")
+
+	deck := new_deck()
+	deck.save_to_file_two("_decktesting")
+
+	loadedDeck := new_deck_from_file("_decktesting")
+
+	if len(loadedDeck) != 16 {
+		t.Errorf("Expected 16 cards in deck, got %v", len(loadedDeck))
+	}
+
+	os.Remove("_decktesting")
 }
