@@ -1,10 +1,6 @@
 package main
 
-import (
-	"fmt"
-)
-
 func main() {
-	fmt.Println("Hello from main")
-	is_even_or_odd()
+	// test := []int{6, 5}
+	// is_even_or_odd_two(test)
 }
