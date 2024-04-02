@@ -7,7 +7,7 @@ type ContactInfo struct {
 	zipCode int
 }
 
-type person struct {
+type Person struct {
 	firstName string
 	lastName  string
 	ContactInfo
@@ -16,18 +16,23 @@ type person struct {
 func main() {
 	fmt.Println("== Structs ==")
 
-	jim := person{
+	jim := Person{
 		firstName: "Jim",
 		lastName:  "Halpert",
 		ContactInfo: ContactInfo{
-			email:   "jhalper@dundermifflin.com",
+			email:   "jhalpert@dundermifflin.com",
 			zipCode: 94000,
 		},
 	}
 
+	jim.updateName("Jimbo")
 	jim.print()
 }
 
-func (p person) print() {
+func (p *Person) updateName(name string) {
+	p.firstName = name
+}
+
+func (p Person) print() {
 	fmt.Printf("%+v\n", p)
 }
