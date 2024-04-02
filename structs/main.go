@@ -25,7 +25,9 @@ func main() {
 		},
 	}
 
-	fmt.Println("My first name is: ", jim.firstName)
-	fmt.Println("My last name is: ", jim.lastName)
-	fmt.Printf("Person info: %+v\n", jim)
+	jim.print()
+}
+
+func (p person) print() {
+	fmt.Printf("%+v\n", p)
 }
