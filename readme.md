@@ -41,3 +41,15 @@ func (d deck) read_from_file() error {
 ```
 
 Here we are saying: if `nil` is not == 0 (because nil is effectively 0 in Golang), return an error.
+
+## Heap and Stack in Go
+
+Source: https://medium.com/@quicktechlearn/stack-and-heap-memory-in-golang-eec3fb7ec113
+
+**Sum up**
+
+The language does not speak about stacks and heaps, formally.
+
+In Go, you don’t have direct control over whether a variable is stored in the stack or heap. The Go runtime and compiler make these decisions based on the variable’s scope, lifetime, and size. Stack memory is generally more efficient for small, short-lived variables, while heap memory is used for larger, dynamically allocated data structures.
+
+Go’s automatic memory management, including garbage collection for heap-allocated objects, simplifies memory management for developers and helps prevent common memory-related bugs like memory leaks and use-after-free errors.
