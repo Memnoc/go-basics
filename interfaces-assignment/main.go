@@ -5,7 +5,7 @@ import (
 )
 
 type shape interface {
-	printArea() float64
+	getArea() float64
 }
 
 type square struct {
@@ -17,26 +17,24 @@ type triangle struct {
 	base   float64
 }
 
-func (s square) printArea() float64 {
-	area := s.sideLength * s.sideLength
-	return area
-}
-
-func (t triangle) printArea() float64 {
-	area := 0.5 * t.base * t.height
-	return area
-}
-
 func printArea(s shape) {
-	fmt.Println(s.printArea())
+	fmt.Println(s.getArea())
 }
 
 func main() {
 	fmt.Println("== Interfaces Assignment ==")
 
-	tr := triangle{base: 4, height: 66}
-	sq := square{sideLength: 4}
+	tr := triangle{base: 10, height: 10}
+	sq := square{sideLength: 10}
 
 	printArea(tr)
 	printArea(sq)
+}
+
+func (s square) getArea() float64 {
+	return s.sideLength * s.sideLength
+}
+
+func (t triangle) getArea() float64 {
+	return 0.5 * t.base * t.height
 }
